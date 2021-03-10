@@ -261,7 +261,7 @@ bounded_buffer *readFileToFileBuffer(const char *filePath) {
     return nullptr;
   }
 
-  p->buf = reinterpret_cast<std::uint8_t *>(ptr);
+  p->buf = static_cast<std::uint8_t *>(ptr);
   p->bufLen = fileSize;
 #else
   p->detail->fd = fd;
@@ -292,7 +292,7 @@ bounded_buffer *readFileToFileBuffer(const char *filePath) {
     return nullptr;
   }
 
-  p->buf = reinterpret_cast<std::uint8_t *>(maddr);
+  p->buf = static_cast<std::uint8_t *>(maddr);
   p->bufLen = static_cast<std::uint32_t>(s.st_size);
 #endif
   p->copy = false;
